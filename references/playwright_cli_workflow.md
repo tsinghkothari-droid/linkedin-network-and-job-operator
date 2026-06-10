@@ -2,6 +2,17 @@
 
 Primary browser control plane. MCP is fallback only.
 
+## Hard rule: no personal Chrome profiles
+
+**Never** use the operator's personal Chrome user-data directory, Gmail-signed-in profile, or existing browser cookies. This includes:
+
+- No `--profile` pointing to `Google\Chrome\User Data`
+- No `attach --extension` to personal Chrome
+- No `state-save` / `state-load` of real session cookies
+- No account-specific bootstrap scripts
+
+Use an **isolated Playwright session** only (`.playwright-profiles/linkedin-ops/`, gitignored).
+
 ## Install
 
 ```bash
@@ -25,10 +36,10 @@ bash scripts/bootstrap_chrome.sh
 
 ### What happens
 
-1. Headed Chrome opens to `https://www.linkedin.com/feed/`
+1. Headed Chrome opens to `https://www.linkedin.com/feed/` in an **isolated** session
 2. Named session: `linkedin-ops`
-3. Profile stored in `.playwright-profiles/linkedin-ops/` (gitignored)
-4. **User logs in manually** if needed
+3. Profile stored in `.playwright-profiles/linkedin-ops/` (gitignored, not your personal Chrome)
+4. **User logs in manually** in this isolated window if needed
 5. User tells agent: `LinkedIn session ready`
 
 ## Agent commands (after login)
@@ -79,6 +90,7 @@ Stop immediately and notify user if snapshot contains:
 - **Never** `state-save` to repo paths
 - **Never** commit `.playwright-profiles/`
 - **Never** automate credential entry
+- **Never** attach to or reuse personal Chrome profiles
 - Snapshots in `linkedin-job-workspace/snapshots/` are gitignored
 
 ## CLI vs MCP decision
@@ -87,6 +99,6 @@ Stop immediately and notify user if snapshot contains:
 |--------------|--------------|
 | Step-by-step job search | MCP already configured and CLI missing |
 | Token budget matters | Long exploratory browser loop requested |
-| User wants headed Chrome | Extension attach mode needed |
+| User wants headed Chrome | Long exploratory browser loop requested |
 
-Default: **CLI first**.
+Default: **CLI first**, always isolated session.

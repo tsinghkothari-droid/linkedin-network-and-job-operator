@@ -22,6 +22,7 @@ network_index.html
 # Playwright CLI browser profiles (may contain session data)
 .playwright-profiles/
 .playwright-cli/
+.playwright/
 linkedin-job-workspace/snapshots/
 linkedin-job-workspace/screenshots/
 

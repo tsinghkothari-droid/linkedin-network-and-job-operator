@@ -35,9 +35,15 @@ These rules apply to every invocation of the LinkedIn Network and Job Operator s
 
 **Allowed:**
 
-- User confirms they are already logged in
+- User confirms they are already logged in (isolated Playwright session only)
 - Playwright reads visible DOM text only
-- Session exists only in user's browser; agent does not persist it
+- Session exists only in gitignored `.playwright-profiles/`; agent does not persist credentials
+
+**Forbidden (personal browser):**
+
+- Reusing personal Chrome user-data directories or Gmail-signed-in profiles
+- Attaching Playwright to the operator's everyday Chrome via extension
+- Loading saved cookie/state files from real accounts into the repo
 
 ## Git and Version Control
 
