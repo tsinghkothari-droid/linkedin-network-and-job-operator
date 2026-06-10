@@ -19,7 +19,7 @@ playwright-cli --version
 
 1. Install the [Playwright MCP Chrome extension](https://github.com/microsoft/playwright/tree/main/packages/extension)
 2. Open extension → copy **extension token**
-3. In skill folder, copy `.env.example` → `.env` (never commit `.env`):
+3. In skill folder, copy `env.example` → `.env` (never commit `.env`):
 
 ```
 PLAYWRIGHT_MCP_EXTENSION_TOKEN=your_token_here
