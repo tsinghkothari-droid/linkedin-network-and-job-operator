@@ -1,5 +1,7 @@
 # Architecture: End-to-End LinkedIn Operator
 
+**Use cases:** [USE_CASES.md](./USE_CASES.md) · **Personas:** [PERSONAS.md](./PERSONAS.md)
+
 ## System Overview
 
 ```
@@ -30,6 +32,20 @@
               │   leadership, sector news        │
               └──────────────────────────────────┘
 ```
+
+## Use-Case Layer (people at large)
+
+| Category | Primary outputs | Human gate |
+|----------|-----------------|------------|
+| Job search & applications | `job_pipeline.csv`, `application_drafts/` | User submits |
+| Content & posting | `post_recommendations.md`, analytics summaries | User publishes |
+| Trend identification | `sector_opportunities.csv`, `skills_roadmap.md`, digests | User acts on signals |
+| Business opportunities | `business_opportunities.md`, `leadership_map.csv` | User outreach |
+| Network & new connections | `senior_targets.csv`, `outreach_messages.md` | User connects/sends |
+| Cross-site jobs | Job cards from public career pages | Same as applications |
+| Exploration | `exploration/snapshots/*.yml` | Feeds parsers above |
+
+Full catalog: [USE_CASES.md](./USE_CASES.md)
 
 ## Control Plane: Playwright CLI
 
@@ -127,6 +143,9 @@ Intake script: `scripts/intake_profile.py --subject path/to/profile.json`
 | Senior targets | `senior_recommendations.py` | network + goals | `senior_targets.csv` |
 | Content strategy | `content_recommendations.py` | network + subject | `post_recommendations.md` |
 | Job pipeline | `validate_skill.py` (existing) | jobs + profile | `job_pipeline.csv` |
+| Exploration | `explore_linkedin.bat` + `parse_exploration.py` | live session | `exploration_report.md` |
+| Job snapshot parse | `parse_jobs_from_snapshot.py` (planned) | jobs YAML | `job_pipeline.csv` |
+| Viewer parse | `parse_viewers_from_snapshot.py` (planned) | profile-views YAML | nurture CSV |
 | Dashboard | `build_dashboard.py` | workspace CSVs | HTML dashboard |
 
 ### Skills intelligence algorithm

@@ -3,6 +3,8 @@
 These skills extend the LinkedIn operator into a modular career intelligence suite.
 Build as **modules inside** `linkedin-network-and-job-operator` first; extract when stable.
 
+**Audience use cases:** [USE_CASES.md](./USE_CASES.md)
+
 ---
 
 ## 1. `playwright-cli-browser-ops`
@@ -159,6 +161,58 @@ Already partially implemented as Workflows 2–4. Extract when job pipeline stab
 
 ---
 
+## 9. `linkedin-profile-viewer-intel`
+
+**Purpose:** Parse profile viewer analytics → nurture and hiring-intent targets.
+
+**Triggers:** `who viewed my profile`, `nurture profile viewers`
+
+**Use case:** [USE_CASES §E](./USE_CASES.md#e-network-growth--whos-new-in-the-industry)
+
+---
+
+## 10. `linkedin-creator-analytics-reader`
+
+**Purpose:** Impressions, engagement, audience demographics → content calendar feedback.
+
+**Triggers:** `how are my posts doing`, `content performance`
+
+**Use case:** [USE_CASES §B](./USE_CASES.md#b-content-creation--posting)
+
+---
+
+## 11. `multi-page-linkedin-operator`
+
+**Purpose:** Content calendars across personal + company pages user admins.
+
+**Triggers:** `manage my linkedin pages`, `company page content`
+
+**Use case:** [USE_CASES §G](./USE_CASES.md#g-company--brand-operations-multi-page)
+
+---
+
+## 12. `cross-site-job-scanner`
+
+**Purpose:** Compare visible job listings on Indeed, Glassdoor, Naukri, company sites (no private APIs).
+
+**Triggers:** `search jobs on indeed`, `compare job boards`
+
+**Use case:** [USE_CASES §3](./USE_CASES.md#3-cross-platform--other-sites)
+
+**Depends on:** `playwright-cli-browser-ops`
+
+---
+
+## 13. `govtech-sector-scanner` (example vertical)
+
+**Purpose:** Template for vertical scanners — power, govtech, healthtech, etc.
+
+**Triggers:** `govtech opportunities`, `power sector jobs india`
+
+**Use case:** [USE_CASES §C/D](./USE_CASES.md#c-trend--signal-identification)
+
+---
+
 ## Build Order (recommended)
 
 ```
@@ -170,6 +224,9 @@ Already partially implemented as Workflows 2–4. Extract when job pipeline stab
 6. linkedin-sector-scanner          ← macro + network
 7. linkedin-business-opportunity-finder ← combines 5+6
 8. linkedin-job-application-assistant ← already started
+9. linkedin-profile-viewer-intel       ← exploration validated
+10. linkedin-creator-analytics-reader  ← exploration validated
+11. cross-site-job-scanner             ← USE_CASES cross-platform
 ```
 
 ## Meta-Skill Recommendation Engine

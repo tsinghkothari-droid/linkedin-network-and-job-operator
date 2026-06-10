@@ -1,5 +1,7 @@
 # Implementation Roadmap
 
+**Use-case driven plan:** [USE_CASES.md](./USE_CASES.md) · **Personas:** [PERSONAS.md](./PERSONAS.md)
+
 ## Phase 0 — Research (DONE)
 
 - [x] Playwright CLI evaluation
@@ -40,12 +42,17 @@
 - [x] Phase 0 bootstrap section in SKILL.md
 - [ ] End-to-end orchestrator script `scripts/run_pipeline.py`
 
-## Phase 4 — Browser-Connected Workflows
+## Phase 4 — Browser-Connected Workflows (IN PROGRESS)
 
-- [ ] Job search via playwright-cli snapshots
-- [ ] Company page leadership snapshot parser
+- [x] `scripts/explore_linkedin.bat` — multi-page exploration
+- [x] `scripts/parse_exploration.py` — capability report from snapshots
+- [x] Extension attach flow (`attach_with_token.bat`)
+- [ ] `parse_jobs_from_snapshot.py` — live jobs → `job_pipeline.csv` (Use case: **Job search**)
+- [ ] `parse_viewers_from_snapshot.py` — viewer nurture targets (Use case: **Network growth**)
+- [ ] Company page leadership snapshot parser (Use case: **Business opps**)
 - [ ] Profile comparison from visible browser content
-- [ ] Screenshot review pipeline for form prefill
+- [ ] Screenshot review pipeline for form prefill (Use case: **Applications**)
+- [ ] Cross-site job compare script — Indeed/Glassdoor visible pages (Use case: **Cross-platform**)
 
 ## Phase 5 — Companion Skill Extraction
 
@@ -62,6 +69,18 @@
 - [ ] Post recommendation quality review
 - [ ] Privacy audit (no PII in git)
 
+## Phase 7 — Use-Case Maturity (by audience)
+
+| Use case category | Shipped | Next |
+|-------------------|---------|------|
+| Job search & applications | Export scoring, validation | Live snapshot parser |
+| Content & posting | `content_recommendations.py` | Analytics feedback loop parser |
+| Trend identification | Sector + skills modules | Newsletter + notification digest |
+| Business opportunities | `business_opportunity.py` | Leadership + tender watch |
+| New industry connections | Senior recs, network index | PYMK + viewer parsers |
+| Cross-site research | Documented in USE_CASES | Per-locale job site adapters |
+| Multi-page brand ops | Exploration capture | `multi_page_operator.py` |
+
 ## Success Criteria
 
 | Metric | Target |
@@ -73,4 +92,6 @@
 | Senior targets | Top 10 ranked with intro rationale |
 | Post recs | 9+ ideas (3/week × 3 weeks) tied to network |
 | Job pipeline | Score + referral + checklist (no submit) |
+| Exploration | 10 LinkedIn surfaces captured in one run |
+| USE_CASES doc | All major personas covered on GitHub |
 | Git safety | Zero real PII committed |

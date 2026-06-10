@@ -1,20 +1,25 @@
 ---
 name: linkedin-network-and-job-operator
 description: >
-  End-to-end LinkedIn career intelligence operator: launch Chrome via playwright-cli,
-  analyze network exports, generate skills roadmaps, sector/business opportunities,
-  leadership intel, senior people recommendations, post strategy, job discovery,
-  referrals, and application assistance. Supports analyzing a different person's
-  profile than the operator. Trigger with "linkedin network analysis", "linkedin job
-  operator", "skills roadmap", "sector opportunities", "post recommendations",
-  "leadership intel", or "/linkedin-network-and-job-operator". Human review required
-  for all browser actions. Never scrapes private APIs or submits applications automatically.
+  End-to-end LinkedIn career and business operator for people at large: job search and
+  applications (referral-first, human submit), content creation and posting strategy,
+  trend and hiring signal identification, business opportunity detection, industry
+  newcomer discovery, network growth, skills roadmaps, leadership intel, and cross-site
+  job research (visible browser only). Launch Chrome via playwright-cli extension attach.
+  Supports coach/recruiter subject mode. Trigger with "linkedin network analysis",
+  "find jobs", "job application assistant", "what should I post", "sector opportunities",
+  "business opportunities", "senior people to connect", "skills gap", or
+  "/linkedin-network-and-job-operator". Human review required for all sends and submits.
+  Never scrapes private APIs or auto-submits applications.
 ---
 
 # LinkedIn Network and Job Operator
 
 Operate on **your** LinkedIn data and browser session with human-in-the-loop control.
 Use exported LinkedIn data, public job pages, and visible browser content only.
+
+**Use cases for people at large:** Read `docs/USE_CASES.md` (jobs, content, trends, business opps, new connections, other sites).
+**Persona routing:** `docs/PERSONAS.md`
 
 ## Hard Rules (Non-Negotiable)
 
@@ -127,8 +132,23 @@ python scripts/run_intelligence_pipeline.py \
 | "who runs [company]", "leadership map" | 7: Leadership Intelligence | below |
 | "senior people to connect", "who to reach out to" | 8: Senior Recommendations | below |
 | "what should I post", "content strategy" | 9: Post Recommendations | below |
+| "explore linkedin", "what else can you do" | 10: Platform Exploration | `scripts/explore_linkedin.bat` |
+| "business opportunities", "consulting leads" | 6: Sector & Business Opps | below |
+| "who viewed my profile", "nurture viewers" | 10 + 4 | `docs/USE_CASES.md` §E |
+| "trending in [sector]", "hiring signals" | 5, 6, 10 + research | `docs/USE_CASES.md` §C |
 
-**Full run order:** 0 → intake → 1 → 5 → 6 → 7 → 8 → 9 → 2 → 4 → 3
+**Full run order:** 0 → intake → 1 → 5 → 6 → 7 → 8 → 9 → 10 → 2 → 4 → 3
+
+### Personas (quick)
+
+| Persona | Primary workflows |
+|---------|-------------------|
+| Job seeker | 2, 4, 3 |
+| Content creator | 9, 10 |
+| Consultant / BD | 6, 4, 10 |
+| Founder | 6, 7, 8, 9 |
+| Career changer | 5, 6, 1, 2 |
+| Coach (subject mode) | 1, 5–9 on `subject_profile.json` |
 
 ---
 
@@ -325,6 +345,35 @@ User reviews and posts manually — agent never auto-publishes.
 
 ---
 
+## Workflow 10: Platform Exploration
+
+Discover what LinkedIn surfaces are available in the user's live session and capture snapshots for parsers.
+
+```bat
+scripts\explore_linkedin.bat
+python scripts\parse_exploration.py
+```
+
+**Pages:** feed, network, profile-views analytics, creator + audience analytics, jobs (keyword searches), company admin, newsletters, notifications.
+
+**Outputs:** `linkedin-job-workspace/exploration/snapshots/*.yml`, `exploration_report.md`
+
+**Unlocks for people at large:**
+
+| Surface | Use |
+|---------|-----|
+| Jobs search | Live job pipeline |
+| Profile viewers | Nurture + hiring-intent clusters |
+| Creator analytics | Content performance loop |
+| Newsletters | Trend intel + launch operator |
+| Network PYMK | Industry newcomer connections |
+| Notifications | Hiring posts, job changes, mentions |
+| Company admin | Multi-page brand ops |
+
+**Cross-site:** For Indeed, Glassdoor, Naukri, or company career pages — same Playwright session, visible content only. See `docs/USE_CASES.md` §3.
+
+---
+
 ## Browser Automation (Playwright CLI + MCP fallback)
 
 Use only when user has an active logged-in session.
@@ -416,8 +465,11 @@ Agent:
 
 ## References
 
+- **Use cases (people at large):** `docs/USE_CASES.md`
+- **Persona entry points:** `docs/PERSONAS.md`
 - Research (read first): `docs/RESEARCH.md`
 - Architecture: `docs/ARCHITECTURE.md`
+- Discovery & tools: `docs/DISCOVERY.md`
 - Roadmap: `docs/ROADMAP.md`
 - Companion skills to build: `docs/COMPANION_SKILLS.md`
 - Playwright CLI: `references/playwright_cli_workflow.md`

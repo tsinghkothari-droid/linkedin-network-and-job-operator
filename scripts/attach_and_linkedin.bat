@@ -10,4 +10,6 @@ call playwright-cli -s=%SESSION% goto https://www.linkedin.com/feed/
 timeout /t 5 /nobreak >nul
 echo Snapshot...
 call playwright-cli -s=%SESSION% snapshot --filename=linkedin-job-workspace/snapshots/feed.yml
+echo Detaching...
+call playwright-cli -s=%SESSION% detach
 echo Done.

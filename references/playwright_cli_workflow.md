@@ -46,6 +46,8 @@ scripts\attach_with_token.bat
 
 Token auto-approves connections — never commit `.env` to Git.
 
+Scripts call `detach` after work so sessions do not hang. **Do not** run `attach` as a background task.
+
 ### Isolated session (no personal profile)
 
 ### What happens

@@ -1,8 +1,10 @@
 # Tool & Use Case Discovery
 
-**Date:** 2026-06-10  
-**Context:** Live LinkedIn session active (Profile 1, extension attach + token)  
-**Subject signals from feed:** Strategy & Applied AI | Due Diligence | Power Sector | GovTech | India | 258 profile viewers | 2,625 post impressions | 15 admin pages
+**Date:** 2026-06-10 (updated)  
+**Context:** Live LinkedIn session via extension attach + token  
+**Canonical use-case catalog:** [USE_CASES.md](./USE_CASES.md) — written for **people at large**, not one profile.
+
+**Example session signals (operator):** Strategy & Applied AI | Due Diligence | Power Sector | GovTech | India | 261 profile viewers | 2,722 post impressions | 15 admin pages | 16,861 followers | 102 newsletters
 
 ---
 
@@ -83,6 +85,21 @@
 | `leadership_intel.py` | **Missing** | + searxng research |
 | `parse_jobs_from_snapshot.py` | **Missing** | Parse YAML → `job_pipeline.csv` |
 | `run_full_pipeline.py` | **Missing** | Browser + intel + jobs orchestrator |
+| `explore_linkedin.bat` | **Done** | 10-surface exploration run |
+| `parse_exploration.py` | **Done** | Capability + signal report |
+
+---
+
+## 1b. Use Cases Validated by Exploration (any user)
+
+| Use case | Evidence from snapshots | Workflow |
+|----------|-------------------------|----------|
+| Job applications | Live job IDs + Easy Apply in jobs search YAML | 2, 3, 4 |
+| Content & posting | Creator analytics impressions/engagement | 9, 10 |
+| Trend identification | 102 newsletters, notification hiring posts | 6, 10 |
+| Business opportunities | Viewer clusters at hiring companies | 6, 10 |
+| New people to connect | PYMK list, profile viewer names (free tier: 3) | 8, 10 |
+| Multi-page ops | Company admin dashboard, 15 pages on feed | 9, 10 |
 
 ---
 
@@ -223,6 +240,8 @@ Your feed snapshot reveals opportunities beyond generic job search:
 
 ## References
 
+- [USE_CASES.md](./USE_CASES.md) — full catalog for people at large
+- [PERSONAS.md](./PERSONAS.md) — goal → workflow routing
 - [COMPANION_SKILLS.md](./COMPANION_SKILLS.md)
 - [ROADMAP.md](./ROADMAP.md)
 - [RESEARCH.md](./RESEARCH.md)

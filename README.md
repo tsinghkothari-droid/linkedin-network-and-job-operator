@@ -1,110 +1,113 @@
 # linkedin-network-and-job-operator
 
-Codex/Cursor agent skill for LinkedIn network analysis, job discovery, referral-first outreach, and application assistance — with strict human-in-the-loop controls.
+Agent skill for **LinkedIn career and business intelligence** — job search, content strategy, trend spotting, opportunity finding, and network growth — with strict human-in-the-loop controls.
+
+Works in **Cursor, Codex, and Grok**. Supports analyzing your own profile or a **client/coachee** (`subject_profile.json`).
+
+## Who is this for?
+
+| You are… | You get… |
+|----------|----------|
+| Job seeker | Scored job pipeline, referral-first outreach, application drafts (you submit) |
+| Consultant / freelancer | Business opportunity detection, viewer nurture, sector targeting |
+| Founder / operator | Leadership maps, hiring signals, senior connection targets |
+| Content creator | Post calendar, analytics feedback loop, newsletter ideas |
+| Coach / recruiter | Full pipeline on someone else's LinkedIn export (subject mode) |
+| Company page admin | Multi-page content ops, follower analytics |
+
+**Full use-case catalog:** [docs/USE_CASES.md](docs/USE_CASES.md)  
+**Quick persona routing:** [docs/PERSONAS.md](docs/PERSONAS.md)
 
 ## What it does
 
-**Phase 0:** Launch headed Chrome via `playwright-cli` — you log in, agent controls browser with human review.
+**Phase 0:** Attach to your Chrome via Playwright CLI extension (or headed bootstrap) — you log in, agent reads visible pages.
 
-1. **Network Analysis** — Classify connections from LinkedIn export; build searchable indexes.
-2. **Skills Intelligence** — Personalized skills roadmap + recommend new agent skills to build.
-3. **Sector & Business Opportunities** — Score sectors and detect intro/advisory/co-founder opportunities.
-4. **Leadership Intel** — Who runs organizations (public sources + browser).
-5. **Senior Recommendations** — Rank senior people to connect, nurture, or intro through.
-6. **Post Strategy** — Content ideas tuned to what would interest *their* network (2026 algorithm).
-7. **Job Discovery** — Score jobs from browser-visible content.
-8. **Referral-first Strategy** — Rank referral targets and draft outreach.
-9. **Application Assistant** — Draft cover letters, prefill forms (never submit).
+| # | Capability | For people at large |
+|---|------------|---------------------|
+| 1 | **Network analysis** | Classify 1st-degree connections; referral indexes |
+| 2 | **Job discovery & scoring** | Live LinkedIn Jobs + public career pages |
+| 3 | **Application assistant** | Cover letters, prefill — **never auto-submit** |
+| 4 | **Referral-first strategy** | Who to ask before you apply |
+| 5 | **Skills intelligence** | Roadmap + which agent skills to build next |
+| 6 | **Sector & business opportunities** | Trends, consulting leads, intro arbitrage |
+| 7 | **Leadership intel** | Who runs target companies (sourced) |
+| 8 | **Senior recommendations** | Who to connect in your industry |
+| 9 | **Content & post strategy** | Ideas tuned to your audience + 2026 algorithm norms |
+| 10 | **Platform exploration** | Feed, analytics, jobs, viewers, newsletters — automated snapshots |
 
-Supports analyzing a **different person's profile** than yours (coach/recruiter mode).
-
-## Research & docs
-
-- [RESEARCH.md](docs/RESEARCH.md) — full research backing
-- [ARCHITECTURE.md](docs/ARCHITECTURE.md) — system design
-- [ROADMAP.md](docs/ROADMAP.md) — implementation phases
-- [COMPANION_SKILLS.md](docs/COMPANION_SKILLS.md) — future skills to extract
+**Also supports:** Indeed / Glassdoor / company sites via **visible browser only**; sector news via SearXNG research skill. See [USE_CASES §3](docs/USE_CASES.md#3-cross-platform--other-sites).
 
 ## Hard rules
 
 - No private LinkedIn API scraping
-- No credential or cookie storage
+- No credential or cookie storage in Git
 - No CAPTCHA/rate-limit bypass
-- No mass apply
+- No mass apply or mass messaging
 - No Submit without your explicit approval per application
 - No committing real LinkedIn exports or PII to Git
 
 ## Install
 
-### Cursor / Codex (user skills)
-
-Clone into your agents skills folder:
-
 ```bash
 git clone https://github.com/tsinghkothari-droid/linkedin-network-and-job-operator.git \
   ~/.agents/skills/linkedin-network-and-job-operator
+
+npm install -g @playwright/cli@latest
 ```
 
-Or copy `SKILL.md` and supporting files to `.agents/skills/linkedin-network-and-job-operator/`.
+Copy `.env.example` → `.env` with `PLAYWRIGHT_MCP_EXTENSION_TOKEN` (gitignored) for extension attach.
 
-### Grok
+## Quick start
 
-Also available at `~/.grok/skills/linkedin-network-and-job-operator/`.
+### Trigger phrases
 
-## Usage
+- `linkedin network analysis` · `find jobs on linkedin` · `job application assistant`
+- `what should I post` · `sector opportunities` · `business opportunities`
+- `senior people to connect` · `skills gap` · `/linkedin-network-and-job-operator`
 
-Trigger phrases:
+### Exploration (live session)
 
-- `linkedin network analysis`
-- `find jobs on linkedin`
-- `job application assistant`
-- `referral strategy`
-- `/linkedin-network-and-job-operator`
+```bat
+scripts\explore_linkedin.bat
+python scripts\parse_exploration.py
+```
 
-### Quick validation (synthetic data)
+### Export-based intelligence
 
 ```bash
-cd ~/.agents/skills/linkedin-network-and-job-operator
+python scripts/parse_linkedin_export.py --input ~/Downloads/Basic_LinkedInDataExport.zip --out linkedin-job-workspace/network.json
+python scripts/run_intelligence_pipeline.py --subject linkedin-job-workspace/subject_profile.json --network linkedin-job-workspace/network.json
+```
+
+### Validation (synthetic — no real data)
+
+```bash
 python scripts/validate_skill.py --workspace validation/output
 ```
 
-Outputs job scores, referral targets, draft messages, and checklists for 3 sample jobs. **Nothing is submitted.**
+## Documentation
 
-### Real workflow
-
-1. Export LinkedIn data (Settings → Data Privacy → Get a copy of your data).
-2. Parse export:
-   ```bash
-   python scripts/parse_linkedin_export.py --input ~/Downloads/linkedin_export.zip --out linkedin-job-workspace/network.json
-   ```
-3. Build indexes:
-   ```bash
-   python scripts/build_network_index.py --network linkedin-job-workspace/network.json --out-dir linkedin-job-workspace
-   ```
-4. Use Playwright MCP with your logged-in browser for job search (human review required).
-5. Review drafts in `linkedin-job-workspace/` and submit applications yourself.
+| Doc | Contents |
+|-----|----------|
+| [USE_CASES.md](docs/USE_CASES.md) | **All use cases for people at large** |
+| [PERSONAS.md](docs/PERSONAS.md) | Goal → workflow routing |
+| [RESEARCH.md](docs/RESEARCH.md) | Research backing |
+| [ARCHITECTURE.md](docs/ARCHITECTURE.md) | System design |
+| [DISCOVERY.md](docs/DISCOVERY.md) | Tools & live exploration findings |
+| [ROADMAP.md](docs/ROADMAP.md) | Implementation phases |
+| [COMPANION_SKILLS.md](docs/COMPANION_SKILLS.md) | Future modular skills |
 
 ## Structure
 
 ```
 SKILL.md
-references/
-  privacy_rules.md
-  linkedin_job_workflow.md
-templates/
-  job_pipeline_schema.csv
-  referral_message_templates.md
-scripts/
-  parse_linkedin_export.py
-  build_network_index.py
-  extract_visible_jobs.py
-  build_dashboard.py
-  validate_skill.py
-validation/
-  sample_jobs.json
-  sample_data/
+docs/          USE_CASES, PERSONAS, RESEARCH, ARCHITECTURE, ROADMAP, DISCOVERY
+references/    privacy_rules, playwright_cli_workflow, linkedin_job_workflow
+templates/     schemas, MCP config example, message templates
+scripts/       parse, score, explore, attach, intelligence pipeline
+validation/    sample data for safe testing
 ```
 
 ## Privacy
 
-See `references/privacy_rules.md`. Keep `linkedin-job-workspace/` local and gitignored.
+See `references/privacy_rules.md`. Keep `linkedin-job-workspace/` and `.env` local and gitignored.
