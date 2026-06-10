@@ -279,8 +279,8 @@ python scripts\parse_exploration.py
 | Job pipeline from live snapshots | ✅ `parse_jobs_from_snapshot.py` |
 | Scores + application + post drafts | ✅ `run_scores_drafts_posts.py` |
 | Viewer nurture parser | 🔜 `parse_viewers_from_snapshot.py` |
-| Leadership intel + SearXNG | 🔜 `leadership_intel.py` |
-| Full orchestrator | 🔜 `run_full_pipeline.py` |
+| Leadership intel + SearXNG | ✅ `leadership_intel.py` (set `SEARXNG_URL`) |
+| Full orchestrator | ✅ `run_generic_pipeline.py` |
 | Cross-site job compare (Indeed etc.) | 📋 Documented; build per locale |
 | Cursor Playwright MCP | 📋 Template in `templates/cursor-mcp-playwright.example.json` |
 
