@@ -34,6 +34,20 @@ playwright-cli install --skills   # optional
 bash scripts/bootstrap_chrome.sh
 ```
 
+### Option — Extension attach (Profile 1, Chrome stays open)
+
+1. Install [Playwright Chrome Extension](https://chromewebstore.google.com/detail/playwright-extension/mmlmfjhmonkocbjadbfplnigmagldckm) in Profile 1
+2. Copy `PLAYWRIGHT_MCP_EXTENSION_TOKEN` from extension UI into local `.env` (gitignored)
+3. Run:
+
+```bat
+scripts\attach_with_token.bat
+```
+
+Token auto-approves connections — never commit `.env` to Git.
+
+### Isolated session (no personal profile)
+
 ### What happens
 
 1. Headed Chrome opens to `https://www.linkedin.com/feed/` in an **isolated** session

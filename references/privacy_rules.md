@@ -44,6 +44,7 @@ These rules apply to every invocation of the LinkedIn Network and Job Operator s
 - Reusing personal Chrome user-data directories or Gmail-signed-in profiles
 - Attaching Playwright to the operator's everyday Chrome via extension
 - Loading saved cookie/state files from real accounts into the repo
+- Committing `PLAYWRIGHT_MCP_EXTENSION_TOKEN` or `.env` to Git
 
 ## Git and Version Control
 
