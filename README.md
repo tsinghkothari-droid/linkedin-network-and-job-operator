@@ -56,7 +56,7 @@ git clone https://github.com/tsinghkothari-droid/linkedin-network-and-job-operat
 npm install -g @playwright/cli@latest
 ```
 
-Copy `.env.example` → `.env` with `PLAYWRIGHT_MCP_EXTENSION_TOKEN` (gitignored) for extension attach.
+Copy `env.example` → `.env` with `PLAYWRIGHT_MCP_EXTENSION_TOKEN` (gitignored) for extension attach. Optional: `SEARXNG_URL` for leadership research.
 
 ## Quick start
 
@@ -66,7 +66,25 @@ Copy `.env.example` → `.env` with `PLAYWRIGHT_MCP_EXTENSION_TOKEN` (gitignored
 - `what should I post` · `sector opportunities` · `business opportunities`
 - `senior people to connect` · `skills gap` · `/linkedin-network-and-job-operator`
 
-### Exploration (live session)
+### Generic pipeline (any user — Phases A–E)
+
+1. **Browser:** `scripts\attach_with_token.bat` or `explore_linkedin.bat` — log in manually
+2. **Export:** Request LinkedIn data archive → download ZIP to workspace
+3. **Intake:** Answer ≤7 questions → save `linkedin-job-workspace/intake_responses.json`
+4. **Run:**
+
+```bash
+python scripts/run_generic_pipeline.py \
+  --workspace linkedin-job-workspace \
+  --intake linkedin-job-workspace/intake_responses.json \
+  --export path/to/Basic_LinkedInDataExport.zip
+```
+
+5. **Open:** `linkedin-job-workspace/intelligence_dashboard.html` + `action_plan_6mo.md`
+
+Flags: `--skip-live` (no snapshot scoring), `--with-explore` (Windows: run exploration first), `--network` (skip export parse).
+
+### Exploration + live scoring
 
 ```bat
 scripts\explore_linkedin.bat
@@ -76,7 +94,7 @@ python scripts\run_scores_drafts_posts.py --workspace linkedin-job-workspace
 
 Outputs scored jobs, application drafts, and LinkedIn post drafts (you submit and publish).
 
-### Export-based intelligence
+### Legacy module-only pipeline
 
 ```bash
 python scripts/parse_linkedin_export.py --input ~/Downloads/Basic_LinkedInDataExport.zip --out linkedin-job-workspace/network.json
@@ -86,6 +104,7 @@ python scripts/run_intelligence_pipeline.py --subject linkedin-job-workspace/sub
 ### Validation (synthetic — no real data)
 
 ```bash
+python scripts/run_generic_pipeline.py --workspace validation/generic_output --intake validation/sample_intake.json --network validation/sample_data/network.json --skip-live
 python scripts/validate_skill.py --workspace validation/output
 ```
 
@@ -108,7 +127,7 @@ SKILL.md
 docs/          USE_CASES, PERSONAS, RESEARCH, ARCHITECTURE, ROADMAP, DISCOVERY
 references/    privacy_rules, playwright_cli_workflow, linkedin_job_workflow
 templates/     schemas, MCP config example, message templates
-scripts/       parse, score, explore, attach, intelligence pipeline
+scripts/       parse, score, explore, attach, run_generic_pipeline, dashboards
 validation/    sample data for safe testing
 ```
 
