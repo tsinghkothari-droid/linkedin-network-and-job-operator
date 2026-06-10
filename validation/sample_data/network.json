@@ -1,0 +1,103 @@
+{
+  "generated_at": "2026-06-10T00:00:00+00:00",
+  "source": "synthetic_validation_data",
+  "connection_count": 8,
+  "connections": [
+    {
+      "name": "Alex Rivera",
+      "company": "NovaPay",
+      "title": "Senior Talent Acquisition Partner",
+      "profile_url": "https://linkedin.com/in/alex-rivera-sample",
+      "email": "",
+      "connected_on": "2024-03-12",
+      "seniority": "Recruiter",
+      "tags": ["recruiter"],
+      "usefulness_score": 85,
+      "industry": "fintech"
+    },
+    {
+      "name": "Jordan Kim",
+      "company": "NovaPay",
+      "title": "Director of Product",
+      "profile_url": "https://linkedin.com/in/jordan-kim-sample",
+      "email": "",
+      "connected_on": "2023-11-08",
+      "seniority": "Director",
+      "tags": ["hiring_manager"],
+      "usefulness_score": 80,
+      "industry": "fintech"
+    },
+    {
+      "name": "Sam Patel",
+      "company": "CloudLedger",
+      "title": "Engineering Manager",
+      "profile_url": "https://linkedin.com/in/sam-patel-sample",
+      "email": "",
+      "connected_on": "2024-01-20",
+      "seniority": "Manager",
+      "tags": ["hiring_manager"],
+      "usefulness_score": 75,
+      "industry": "saas"
+    },
+    {
+      "name": "Morgan Lee",
+      "company": "CloudLedger",
+      "title": "Product Designer",
+      "profile_url": "https://linkedin.com/in/morgan-lee-sample",
+      "email": "",
+      "connected_on": "2022-09-15",
+      "seniority": "IC",
+      "tags": ["peer"],
+      "usefulness_score": 40,
+      "industry": "saas"
+    },
+    {
+      "name": "Taylor Brooks",
+      "company": "HealthBridge",
+      "title": "VP Marketing",
+      "profile_url": "https://linkedin.com/in/taylor-brooks-sample",
+      "email": "",
+      "connected_on": "2023-06-01",
+      "seniority": "VP",
+      "tags": ["hiring_manager"],
+      "usefulness_score": 78,
+      "industry": "healthcare"
+    },
+    {
+      "name": "Casey Nguyen",
+      "company": "Stripe",
+      "title": "Product Manager",
+      "profile_url": "https://linkedin.com/in/casey-nguyen-sample",
+      "email": "",
+      "connected_on": "2024-05-10",
+      "seniority": "IC",
+      "tags": ["peer"],
+      "usefulness_score": 45,
+      "industry": "fintech"
+    },
+    {
+      "name": "Riley Chen",
+      "company": "Acme Consulting",
+      "title": "Management Consultant",
+      "profile_url": "https://linkedin.com/in/riley-chen-sample",
+      "email": "",
+      "connected_on": "2021-12-03",
+      "seniority": "IC",
+      "tags": ["advisor"],
+      "usefulness_score": 55,
+      "industry": "consulting"
+    },
+    {
+      "name": "Drew Martinez",
+      "company": "Venture Peak",
+      "title": "Principal",
+      "profile_url": "https://linkedin.com/in/drew-martinez-sample",
+      "email": "",
+      "connected_on": "2020-08-22",
+      "seniority": "Investor",
+      "tags": ["investor"],
+      "usefulness_score": 70,
+      "industry": "other"
+    }
+  ]
+}

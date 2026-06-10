@@ -1,0 +1,38 @@
+[
+  {
+    "job_id": "job-001",
+    "title": "Senior Product Manager",
+    "company": "NovaPay",
+    "location": "Remote US",
+    "url": "https://example.com/jobs/novapay-senior-pm",
+    "posted_date": "3 days ago",
+    "application_type": "easy_apply",
+    "industry": "fintech",
+    "seniority": "Senior",
+    "required_skills": ["product management", "payments", "roadmap", "stakeholder management", "SQL"]
+  },
+  {
+    "job_id": "job-002",
+    "title": "Staff Software Engineer",
+    "company": "CloudLedger",
+    "location": "New York, NY",
+    "url": "https://example.com/jobs/cloudledger-staff-swe",
+    "posted_date": "1 week ago",
+    "application_type": "external",
+    "industry": "saas",
+    "seniority": "Staff",
+    "required_skills": ["python", "distributed systems", "kubernetes", "api design"]
+  },
+  {
+    "job_id": "job-003",
+    "title": "Product Marketing Manager",
+    "company": "HealthBridge",
+    "location": "San Francisco, CA",
+    "url": "https://example.com/jobs/healthbridge-pmm",
+    "posted_date": "5 days ago",
+    "application_type": "easy_apply",
+    "industry": "healthcare",
+    "seniority": "Manager",
+    "required_skills": ["product marketing", "go-to-market", "positioning", "b2b saas"]
+  }
+]

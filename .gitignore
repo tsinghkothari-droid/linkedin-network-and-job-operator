@@ -1,0 +1,26 @@
+# LinkedIn private data — never commit
+linkedin-job-workspace/
+validation/output/
+*.zip
+Connections.csv
+Profile.csv
+Positions.csv
+network.json
+!validation/sample_data/network.json
+job_pipeline.csv
+company_network_map.csv
+referral_targets.csv
+outreach_messages.md
+application_drafts/
+application_status_dashboard.html
+network_index.csv
+network_index.html
+
+# Temp export extraction
+.tmp_export/
+
+# Python
+__pycache__/
+*.pyc
+.env
+.env.*

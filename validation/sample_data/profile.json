@@ -1,0 +1,18 @@
+{
+  "name": "Jordan Candidate",
+  "title": "Senior Product Manager",
+  "seniority": "Senior",
+  "skills": [
+    "product management",
+    "payments",
+    "roadmap",
+    "stakeholder management",
+    "SQL",
+    "go-to-market",
+    "b2b saas"
+  ],
+  "target_industries": ["fintech", "saas", "healthcare"],
+  "preferred_locations": ["remote us", "new york, ny", "san francisco, ca"],
+  "years_experience": 8,
+  "visa_needs": "none"
+}
