@@ -19,6 +19,12 @@ network_index.html
 # Temp export extraction
 .tmp_export/
 
+# Playwright CLI browser profiles (may contain session data)
+.playwright-profiles/
+.playwright-cli/
+linkedin-job-workspace/snapshots/
+linkedin-job-workspace/screenshots/
+
 # Python
 __pycache__/
 *.pyc

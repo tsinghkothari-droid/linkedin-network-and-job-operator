@@ -1,0 +1,15 @@
+{
+  "name": "Subject Full Name",
+  "mode": "subject",
+  "current_title": "Current Job Title",
+  "seniority": "Senior",
+  "skills": ["skill one", "skill two"],
+  "target_roles": ["Target Role 1", "Target Role 2"],
+  "target_industries": ["fintech", "saas"],
+  "preferred_locations": ["remote us", "new york, ny"],
+  "years_experience": 8,
+  "visa_needs": "none",
+  "career_goal": "One sentence career objective",
+  "content_pillars": ["topic pillar 1", "topic pillar 2", "topic pillar 3"],
+  "operator_note": "Optional: who is running this analysis and why"
+}

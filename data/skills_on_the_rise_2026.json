@@ -1,0 +1,65 @@
+{
+  "source": "LinkedIn Skills on the Rise 2026",
+  "source_url": "https://news.linkedin.com/2026/Skills-on-the-rise-2026",
+  "clusters": [
+    {
+      "name": "Leadership & People Management",
+      "skills": [
+        {"skill": "cross-functional collaboration", "demand_weight": 95},
+        {"skill": "team management", "demand_weight": 92},
+        {"skill": "mentorship", "demand_weight": 88},
+        {"skill": "public speaking", "demand_weight": 85}
+      ]
+    },
+    {
+      "name": "Business & Revenue Growth",
+      "skills": [
+        {"skill": "go-to-market strategy", "demand_weight": 94},
+        {"skill": "business development", "demand_weight": 90},
+        {"skill": "revenue growth", "demand_weight": 87}
+      ]
+    },
+    {
+      "name": "Technical & Strategic AI",
+      "skills": [
+        {"skill": "prompt engineering", "demand_weight": 96},
+        {"skill": "large language models", "demand_weight": 93},
+        {"skill": "ai business strategy", "demand_weight": 91},
+        {"skill": "ai literacy", "demand_weight": 95}
+      ]
+    },
+    {
+      "name": "Risk & Compliance",
+      "skills": [
+        {"skill": "governance risk management compliance", "demand_weight": 82},
+        {"skill": "risk management", "demand_weight": 80}
+      ]
+    },
+    {
+      "name": "Communication",
+      "skills": [
+        {"skill": "executive communication", "demand_weight": 89},
+        {"skill": "stakeholder management", "demand_weight": 91},
+        {"skill": "cross-functional coordination", "demand_weight": 88}
+      ]
+    }
+  ],
+  "role_skill_requirements": {
+    "Senior Product Manager": [
+      "product management", "roadmap", "stakeholder management", "sql",
+      "go-to-market strategy", "cross-functional collaboration", "ai literacy"
+    ],
+    "Director of Product": [
+      "product management", "team management", "go-to-market strategy",
+      "executive communication", "business development", "ai business strategy"
+    ],
+    "Staff Software Engineer": [
+      "python", "distributed systems", "kubernetes", "api design",
+      "large language models", "system design"
+    ],
+    "Product Marketing Manager": [
+      "product marketing", "go-to-market strategy", "positioning",
+      "b2b saas", "cross-functional collaboration"
+    ]
+  }
+}

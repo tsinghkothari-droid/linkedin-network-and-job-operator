@@ -1,12 +1,14 @@
 ---
 name: linkedin-network-and-job-operator
 description: >
-  Analyze LinkedIn network exports, discover jobs, draft outreach, and assist with
-  job applications using exported data, public job pages, and human-reviewed browser
-  automation only. Trigger with "linkedin network analysis", "find jobs on linkedin",
-  "job application assistant", "referral strategy", "linkedin job operator", or
-  "/linkedin-network-and-job-operator". Never scrapes private APIs, stores credentials,
-  bypasses anti-bot systems, or submits applications without explicit approval.
+  End-to-end LinkedIn career intelligence operator: launch Chrome via playwright-cli,
+  analyze network exports, generate skills roadmaps, sector/business opportunities,
+  leadership intel, senior people recommendations, post strategy, job discovery,
+  referrals, and application assistance. Supports analyzing a different person's
+  profile than the operator. Trigger with "linkedin network analysis", "linkedin job
+  operator", "skills roadmap", "sector opportunities", "post recommendations",
+  "leadership intel", or "/linkedin-network-and-job-operator". Human review required
+  for all browser actions. Never scrapes private APIs or submits applications automatically.
 ---
 
 # LinkedIn Network and Job Operator
@@ -25,7 +27,51 @@ Read `references/privacy_rules.md` before any workflow. Never:
 - Click final Submit/Apply without explicit per-application approval
 - Commit full LinkedIn exports, contact lists, emails, or messages to Git
 
-**Browser automation:** Playwright MCP only for visible content the user is already logged into. Pause before any irreversible action.
+**Browser automation:** **Playwright CLI first** (`playwright-cli -s=linkedin-ops`), MCP as fallback. Headed Chrome only. Pause before any irreversible action.
+
+Read `docs/RESEARCH.md` for full research backing. Read `references/playwright_cli_workflow.md` before browser work.
+
+---
+
+## Phase 0: Launch Chrome (Start Here)
+
+Every end-to-end run begins with browser bootstrap:
+
+```powershell
+# Windows
+.\scripts\bootstrap_chrome.ps1
+```
+
+```bash
+# macOS/Linux
+bash scripts/bootstrap_chrome.sh
+```
+
+1. Headed Chrome opens LinkedIn feed
+2. **User logs in manually** (never automate credentials)
+3. User confirms: `LinkedIn session ready`
+4. Agent uses CLI for snapshots/navigation:
+
+```bash
+playwright-cli -s=linkedin-ops snapshot
+playwright-cli -s=linkedin-ops goto "https://www.linkedin.com/jobs/"
+playwright-cli -s=linkedin-ops show   # visual session dashboard
+```
+
+Install if missing: `npm install -g @playwright/cli@latest`
+
+---
+
+## Subject vs Operator Profile
+
+This skill can analyze **a different person** than you (coach/recruiter mode).
+
+| File | Purpose |
+|------|---------|
+| `subject_profile.json` | Person being analyzed (skills, goals, targets) |
+| `operator_profile.json` | Optional — who is running the agent |
+
+Copy schema from `templates/subject_profile_schema.json`. Confirm subject name with user before running pipeline.
 
 ---
 
@@ -42,10 +88,28 @@ linkedin-job-workspace/
 ├── application_status_dashboard.html
 ├── application_drafts/
 ├── network_index.html
-└── network_index.csv
+├── network_index.csv
+├── skills_roadmap.md / .json
+├── recommended_agent_skills.md
+├── sector_opportunities.csv
+├── business_opportunities.md
+├── leadership_map.csv
+├── senior_targets.csv
+├── post_recommendations.md
+├── snapshots/
+└── screenshots/
 ```
 
 Copy schemas from `templates/`. Never commit workspace files to Git.
+
+### One-command intelligence pipeline
+
+```bash
+python scripts/run_intelligence_pipeline.py \
+  --subject linkedin-job-workspace/subject_profile.json \
+  --network linkedin-job-workspace/network.json \
+  --workspace linkedin-job-workspace
+```
 
 ---
 
@@ -53,12 +117,18 @@ Copy schemas from `templates/`. Never commit workspace files to Git.
 
 | User intent | Workflow | Reference |
 |-------------|----------|-----------|
+| "launch chrome", "start linkedin session" | 0: Browser Bootstrap | `references/playwright_cli_workflow.md` |
 | "analyze my network", "who should I reach out to" | 1: Network Analysis | below |
 | "find jobs", "search roles at X" | 2: Job Discovery | `references/linkedin_job_workflow.md` |
 | "help me apply", "draft cover letter for this job" | 3: Job Application Assistant | `references/linkedin_job_workflow.md` |
 | "referral first", "who do I know at X" | 4: Referral-first Strategy | below |
+| "what skills should I learn", "skills gap" | 5: Skills Intelligence | below |
+| "sector opportunities", "which industries" | 6: Sector & Business Opps | below |
+| "who runs [company]", "leadership map" | 7: Leadership Intelligence | below |
+| "senior people to connect", "who to reach out to" | 8: Senior Recommendations | below |
+| "what should I post", "content strategy" | 9: Post Recommendations | below |
 
-Run workflows in order when starting fresh: 1 → 2 → 4 → 3.
+**Full run order:** 0 → intake → 1 → 5 → 6 → 7 → 8 → 9 → 2 → 4 → 3
 
 ---
 
@@ -183,7 +253,79 @@ Run **before** applying when `network_score` > 0.
 
 ---
 
-## Browser Automation (Playwright MCP)
+## Workflow 5: Skills Intelligence
+
+Analyze **subject** (not operator) skills gaps and recommend new agent skills to build.
+
+```bash
+python scripts/skills_intelligence.py \
+  --subject linkedin-job-workspace/subject_profile.json \
+  --out-dir linkedin-job-workspace
+```
+
+Outputs: `skills_roadmap.md`, `skills_roadmap.json`, `recommended_agent_skills.md`
+
+Uses LinkedIn Skills on the Rise 2026 weights (`data/skills_on_the_rise_2026.json`) + target role requirements.
+
+---
+
+## Workflow 6: Sector & Business Opportunities
+
+```bash
+python scripts/sector_opportunity.py --network ... --subject ... --out linkedin-job-workspace/sector_opportunities.csv
+python scripts/business_opportunity.py --network ... --subject ... --out linkedin-job-workspace/business_opportunities.md
+```
+
+Sector score = market growth × network access × skills fit. Business opps: intro arbitrage, advisory, co-founder match, talent placement, thought leadership.
+
+---
+
+## Workflow 7: Leadership Intelligence
+
+For each company (user-provided list or top sector companies):
+
+1. **Web search** (use `searxng-scrapling-research` if available): `"[Company] CEO leadership team 2026"`
+2. **Browser:** `playwright-cli -s=linkedin-ops goto` company About page → snapshot
+3. Cross-reference with `company_network_map.csv`
+4. Output `leadership_map.csv` with `source_url` + `confidence` on every row
+
+**Never guess names.** Every leadership row needs a public source.
+
+---
+
+## Workflow 8: Senior People Recommendations
+
+```bash
+python scripts/senior_recommendations.py \
+  --network linkedin-job-workspace/network.json \
+  --subject linkedin-job-workspace/subject_profile.json \
+  --out linkedin-job-workspace/senior_targets.csv
+```
+
+Ranks T1–T4 seniority tiers. Actions: `connect`, `nurture`, `follow`. Combine with `templates/referral_message_templates.md` for outreach drafts.
+
+---
+
+## Workflow 9: Content & Post Strategy
+
+```bash
+python scripts/content_recommendations.py \
+  --network linkedin-job-workspace/network.json \
+  --subject linkedin-job-workspace/subject_profile.json \
+  --out linkedin-job-workspace/post_recommendations.md
+```
+
+Generates post ideas tuned to **subject's network clusters** (industry × seniority). Follows 2026 algorithm rules:
+- Favor carousels (6–9 slides) and long-form text (1,200–1,800 chars)
+- No external links in post body
+- No engagement bait
+- Depth Score optimization (dwell time, comment depth)
+
+User reviews and posts manually — agent never auto-publishes.
+
+---
+
+## Browser Automation (Playwright CLI + MCP fallback)
 
 Use only when user has an active logged-in session.
 
@@ -253,24 +395,34 @@ When user asks to validate or test the skill:
 
 ---
 
-## Quick Start
+## Quick Start (End-to-End)
 
 ```
-User: "Analyze my LinkedIn export and find senior PM roles in fintech"
+User: "Analyze this person's network, find opportunities, and help with jobs"
 
 Agent:
-1. Run Workflow 1 on export path user provides
-2. Run Workflow 2 with role=Senior Product Manager, industry=fintech
-3. Run Workflow 4 for top-scored companies
-4. Present top 5 jobs with scores, referral targets, draft messages
-5. Ask which jobs to prepare applications for (Workflow 3)
+0. bootstrap_chrome.ps1 → user logs in → "LinkedIn session ready"
+1. Intake subject_profile.json (confirm correct person)
+2. Parse LinkedIn export → network.json (Workflow 1)
+3. run_intelligence_pipeline.py (Workflows 5–9)
+4. Web research for leadership of top companies (Workflow 7)
+5. Browser job search via playwright-cli snapshots (Workflow 2)
+6. Referral-first for top jobs (Workflow 4)
+7. Application drafts, stop before Submit (Workflow 3)
+8. Present dashboard + all intelligence outputs
 ```
 
 ---
 
 ## References
 
+- Research (read first): `docs/RESEARCH.md`
+- Architecture: `docs/ARCHITECTURE.md`
+- Roadmap: `docs/ROADMAP.md`
+- Companion skills to build: `docs/COMPANION_SKILLS.md`
+- Playwright CLI: `references/playwright_cli_workflow.md`
 - Privacy and compliance: `references/privacy_rules.md`
 - Detailed job workflow: `references/linkedin_job_workflow.md`
+- Subject profile schema: `templates/subject_profile_schema.json`
 - Pipeline CSV schema: `templates/job_pipeline_schema.csv`
 - Message templates: `templates/referral_message_templates.md`

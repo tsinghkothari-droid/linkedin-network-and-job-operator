@@ -1,5 +1,6 @@
 {
   "name": "Jordan Candidate",
+  "mode": "subject",
   "title": "Senior Product Manager",
   "seniority": "Senior",
   "skills": [
@@ -11,8 +12,11 @@
     "go-to-market",
     "b2b saas"
   ],
+  "target_roles": ["Senior Product Manager", "Director of Product"],
   "target_industries": ["fintech", "saas", "healthcare"],
   "preferred_locations": ["remote us", "new york, ny", "san francisco, ca"],
   "years_experience": 8,
-  "visa_needs": "none"
+  "visa_needs": "none",
+  "career_goal": "Move into fintech product leadership",
+  "content_pillars": ["product strategy", "payments infrastructure", "career growth"]
 }

@@ -4,10 +4,26 @@ Codex/Cursor agent skill for LinkedIn network analysis, job discovery, referral-
 
 ## What it does
 
-1. **Network Analysis** — Classify connections from your LinkedIn export; build searchable indexes.
-2. **Job Discovery** — Score jobs from public pages or visible browser content.
-3. **Application Assistant** — Draft cover letters, compare resume fit, prefill forms (never submit).
-4. **Referral-first Strategy** — Rank referral targets and draft outreach messages.
+**Phase 0:** Launch headed Chrome via `playwright-cli` — you log in, agent controls browser with human review.
+
+1. **Network Analysis** — Classify connections from LinkedIn export; build searchable indexes.
+2. **Skills Intelligence** — Personalized skills roadmap + recommend new agent skills to build.
+3. **Sector & Business Opportunities** — Score sectors and detect intro/advisory/co-founder opportunities.
+4. **Leadership Intel** — Who runs organizations (public sources + browser).
+5. **Senior Recommendations** — Rank senior people to connect, nurture, or intro through.
+6. **Post Strategy** — Content ideas tuned to what would interest *their* network (2026 algorithm).
+7. **Job Discovery** — Score jobs from browser-visible content.
+8. **Referral-first Strategy** — Rank referral targets and draft outreach.
+9. **Application Assistant** — Draft cover letters, prefill forms (never submit).
+
+Supports analyzing a **different person's profile** than yours (coach/recruiter mode).
+
+## Research & docs
+
+- [RESEARCH.md](docs/RESEARCH.md) — full research backing
+- [ARCHITECTURE.md](docs/ARCHITECTURE.md) — system design
+- [ROADMAP.md](docs/ROADMAP.md) — implementation phases
+- [COMPANION_SKILLS.md](docs/COMPANION_SKILLS.md) — future skills to extract
 
 ## Hard rules
 
