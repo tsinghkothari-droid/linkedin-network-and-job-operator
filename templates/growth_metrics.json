@@ -1,0 +1,96 @@
+{
+  "version": "1.0",
+  "horizon_default_months": 6,
+  "metrics": [
+    {
+      "id": "M1",
+      "name": "Network relevance",
+      "description": "Share of connections in your target industries",
+      "unit": "score_0_100",
+      "baseline_sources": ["network.json", "intake_responses.industry_focus"],
+      "target_delta": 15,
+      "actions": ["CONNECT sector-aligned PYMK", "Prune low-relevance invites"]
+    },
+    {
+      "id": "M2",
+      "name": "Senior access",
+      "description": "Director+ connections in target sectors",
+      "unit": "count",
+      "baseline_sources": ["network_index.csv"],
+      "target_delta": 10,
+      "actions": ["NURTURE senior_targets top 10", "Ask warm intros"]
+    },
+    {
+      "id": "M3",
+      "name": "Referral readiness",
+      "description": "Target companies with at least one 1st-degree contact",
+      "unit": "count",
+      "baseline_sources": ["company_network_map.csv"],
+      "target_delta": 20,
+      "actions": ["Map jobs to connections", "Referral-first before apply"]
+    },
+    {
+      "id": "M4",
+      "name": "Profile visibility",
+      "description": "Profile viewers in last 90 days",
+      "unit": "count",
+      "baseline_sources": ["exploration/snapshots/profile-views.yml"],
+      "target_delta_pct": 30,
+      "actions": ["POST weekly", "Optimize headline", "Engage on senior posts"]
+    },
+    {
+      "id": "M5",
+      "name": "Content reach",
+      "description": "Post impressions (7-day window)",
+      "unit": "count",
+      "baseline_sources": ["exploration/snapshots/creator-analytics.yml"],
+      "target_delta_pct": 50,
+      "actions": ["Publish from post_drafts", "Carousel format", "Native text depth"]
+    },
+    {
+      "id": "M6",
+      "name": "Engagement depth",
+      "description": "Engagements divided by impressions",
+      "unit": "percent",
+      "baseline_sources": ["creator-analytics.yml"],
+      "target_value": 3.0,
+      "actions": ["Stronger CTAs", "Reply to all comments within 24h"]
+    },
+    {
+      "id": "M7",
+      "name": "Skills market fit",
+      "description": "Coverage of top-5 roadmap skills on profile or in progress",
+      "unit": "percent",
+      "baseline_sources": ["skills_roadmap.json"],
+      "target_value": 80,
+      "actions": ["Add skills to profile", "LEARN one skill per month"]
+    },
+    {
+      "id": "M8",
+      "name": "Pipeline velocity",
+      "description": "Meaningful outreach actions per month (user-confirmed)",
+      "unit": "count_per_month",
+      "baseline_sources": ["referral_targets.csv", "user_report"],
+      "target_value": 12,
+      "actions": ["CONNECT", "NURTURE", "APPLY with referral"]
+    },
+    {
+      "id": "M9",
+      "name": "Posting consistency",
+      "description": "Actual posts per month vs intake content_cadence",
+      "unit": "ratio",
+      "baseline_sources": ["user_report", "intake_responses.content_cadence"],
+      "target_value": 1.0,
+      "actions": ["Follow post calendar in dashboard"]
+    },
+    {
+      "id": "M10",
+      "name": "Opportunity funnel",
+      "description": "Business opportunities progressed to conversation",
+      "unit": "count",
+      "baseline_sources": ["business_opportunities.md", "user_report"],
+      "target_delta": 5,
+      "actions": ["RESEARCH prospect", "Draft outreach", "Book calls"]
+    }
+  ]
+}

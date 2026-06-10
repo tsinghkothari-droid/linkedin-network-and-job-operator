@@ -1,6 +1,20 @@
 # Implementation Roadmap
 
-**Use-case driven plan:** [USE_CASES.md](./USE_CASES.md) · **Personas:** [PERSONAS.md](./PERSONAS.md)
+**Use-case driven plan:** [USE_CASES.md](./USE_CASES.md) · **Personas:** [PERSONAS.md](./PERSONAS.md)  
+**Generic v1 plan:** [GENERIC_SKILL_PLAN.md](./GENERIC_SKILL_PLAN.md)
+
+## Phase G — Generic Public Skill (PLANNED)
+
+| ID | Deliverable | Status |
+|----|-------------|--------|
+| G1 | `references/onboarding_playwright.md` + verify script | 🟡 docs done, script pending |
+| G2 | `references/linkedin_data_export_guide.md` + check_export_ready | 🟡 docs done |
+| G3 | Intake ≤7 Q + `intake_to_profile.py` | 🟡 schema + script shipped |
+| G4 | `run_generic_pipeline.py` orchestrator | ⬜ |
+| G5 | `growth_metrics.json` + `action_plan_6mo` generator | 🟡 metrics schema shipped |
+| G6 | `build_intelligence_dashboard.py` fixed layout | ⬜ |
+| G7 | `connection_suggestions.csv` module | ⬜ |
+| G8 | End-to-end generic user test | ⬜ |
 
 ## Phase 0 — Research (DONE)
 

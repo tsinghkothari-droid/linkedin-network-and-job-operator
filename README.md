@@ -16,7 +16,8 @@ Works in **Cursor, Codex, and Grok**. Supports analyzing your own profile or a *
 | Company page admin | Multi-page content ops, follower analytics |
 
 **Full use-case catalog:** [docs/USE_CASES.md](docs/USE_CASES.md)  
-**Quick persona routing:** [docs/PERSONAS.md](docs/PERSONAS.md)
+**Quick persona routing:** [docs/PERSONAS.md](docs/PERSONAS.md)  
+**Generic skill plan (onboarding → intake → dashboard):** [docs/GENERIC_SKILL_PLAN.md](docs/GENERIC_SKILL_PLAN.md)
 
 ## What it does
 

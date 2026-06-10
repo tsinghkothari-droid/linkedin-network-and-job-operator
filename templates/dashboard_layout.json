@@ -1,0 +1,68 @@
+{
+  "version": "1.0",
+  "output_file": "intelligence_dashboard.html",
+  "sections": [
+    {
+      "id": "executive_summary",
+      "title": "Executive Summary",
+      "sources": ["synthesis_summary.json"],
+      "blocks": ["top_strengths", "top_gaps", "priority_this_week"]
+    },
+    {
+      "id": "growth_scorecard",
+      "title": "Professional Growth Metrics",
+      "sources": ["growth_metrics.json", "metrics_baseline.json"],
+      "blocks": ["metric_table", "sparkline_placeholder"]
+    },
+    {
+      "id": "network",
+      "title": "Network Intelligence",
+      "sources": ["network_index.csv", "network_index.html"],
+      "blocks": ["industry_breakdown", "seniority_breakdown", "referral_heatmap"]
+    },
+    {
+      "id": "connections",
+      "title": "Suggested Connections",
+      "sources": ["connection_suggestions.csv", "senior_targets.csv"],
+      "blocks": ["ranked_table", "draft_message_links"]
+    },
+    {
+      "id": "jobs",
+      "title": "Job Pipeline",
+      "sources": ["job_pipeline.csv"],
+      "blocks": ["scored_jobs_table"],
+      "show_if_intake_goal": ["job_search", "career_pivot"]
+    },
+    {
+      "id": "business",
+      "title": "Business Opportunities",
+      "sources": ["business_opportunities.md", "sector_opportunities.csv"],
+      "blocks": ["opportunity_list", "next_action"]
+    },
+    {
+      "id": "content",
+      "title": "Content & Visibility",
+      "sources": ["post_recommendations.md", "post_drafts.md"],
+      "blocks": ["cadence_calendar", "draft_posts"],
+      "show_if_cadence_not": ["rarely"]
+    },
+    {
+      "id": "skills",
+      "title": "Skills & Learning",
+      "sources": ["skills_roadmap.md"],
+      "blocks": ["top_skills", "learning_sequence"]
+    },
+    {
+      "id": "action_plan",
+      "title": "6-Month Action Plan",
+      "sources": ["action_plan_6mo.md", "action_plan_6mo.json"],
+      "blocks": ["monthly_checklist"]
+    },
+    {
+      "id": "human_gates",
+      "title": "Your Controls",
+      "sources": ["references/privacy_rules.md"],
+      "blocks": ["static_human_gates_list"]
+    }
+  ]
+}

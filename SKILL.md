@@ -20,6 +20,25 @@ Use exported LinkedIn data, public job pages, and visible browser content only.
 
 **Use cases for people at large:** Read `docs/USE_CASES.md` (jobs, content, trends, business opps, new connections, other sites).
 **Persona routing:** `docs/PERSONAS.md`
+**Generic skill plan (public GitHub):** `docs/GENERIC_SKILL_PLAN.md`
+
+## Generic Run Order (Any User)
+
+**Do not skip gates.** Each phase requires user confirmation.
+
+| Phase | What | Reference |
+|-------|------|-----------|
+| **A** | Install Playwright + attach **trusted browser** + LinkedIn login | `references/onboarding_playwright.md` |
+| **B** | Guide user to **request & download** LinkedIn data export | `references/linkedin_data_export_guide.md` |
+| **C** | Ask **≤7 intake questions** (MCQ + sliders) **before synthesis** | `references/intake_flow.md`, `templates/intake_questions.json` |
+| **D** | Synthesize: network, jobs, connections, business opps, content, skills | `scripts/run_generic_pipeline.py` (planned) or module scripts |
+| **E** | Deliver **Intelligence Dashboard** + **6-month action plan** | `templates/dashboard_layout.json`, `templates/growth_metrics.json` |
+
+After Phase C:
+
+```bash
+python scripts/intake_to_profile.py --intake linkedin-job-workspace/intake_responses.json --out linkedin-job-workspace/subject_profile.json
+```
 
 ## Hard Rules (Non-Negotiable)
 

@@ -1,0 +1,118 @@
+{
+  "version": "1.0",
+  "max_questions": 7,
+  "rule": "Agent must collect all answers before running synthesis pipeline.",
+  "questions": [
+    {
+      "id": "primary_goal",
+      "order": 1,
+      "type": "mcq",
+      "single_select": true,
+      "prompt": "What is your primary goal for the next 6 months?",
+      "options": [
+        { "id": "job_search", "label": "Job search — land a new role" },
+        { "id": "consulting_bd", "label": "Consulting & clients — grow revenue" },
+        { "id": "thought_leadership", "label": "Thought leadership — visibility and authority" },
+        { "id": "career_pivot", "label": "Career pivot — new industry or function" },
+        { "id": "network_expansion", "label": "Network expansion — strategic relationships" },
+        { "id": "fundraising", "label": "Fundraising / investors" },
+        { "id": "hiring", "label": "Hiring / talent — build a team" }
+      ],
+      "pipeline_weights": {
+        "job_search": { "jobs": 0.4, "connections": 0.2, "content": 0.1, "business": 0.1, "skills": 0.2 },
+        "consulting_bd": { "jobs": 0.05, "connections": 0.25, "content": 0.2, "business": 0.4, "skills": 0.1 },
+        "thought_leadership": { "jobs": 0.05, "connections": 0.15, "content": 0.45, "business": 0.1, "skills": 0.25 },
+        "career_pivot": { "jobs": 0.25, "connections": 0.2, "content": 0.15, "business": 0.1, "skills": 0.3 },
+        "network_expansion": { "jobs": 0.1, "connections": 0.45, "content": 0.15, "business": 0.2, "skills": 0.1 },
+        "fundraising": { "jobs": 0.05, "connections": 0.35, "content": 0.25, "business": 0.25, "skills": 0.1 },
+        "hiring": { "jobs": 0.15, "connections": 0.3, "content": 0.2, "business": 0.25, "skills": 0.1 }
+      }
+    },
+    {
+      "id": "time_horizon",
+      "order": 2,
+      "type": "slider",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "labels": { "1": "3 months", "2": "6 months", "3": "12 months" },
+      "prompt": "How far ahead should your action plan optimize?",
+      "default": 2
+    },
+    {
+      "id": "geo_focus",
+      "order": 3,
+      "type": "mcq",
+      "single_select": true,
+      "prompt": "Primary geography for opportunities",
+      "options": [
+        { "id": "country", "label": "My country only" },
+        { "id": "region", "label": "My region" },
+        { "id": "global_remote", "label": "Global / remote-first" },
+        { "id": "specific_city", "label": "Specific city (I'll specify)" }
+      ],
+      "follow_up_if": { "specific_city": "Which city or cities?" }
+    },
+    {
+      "id": "industry_focus",
+      "order": 4,
+      "type": "mcq",
+      "single_select": false,
+      "max_select": 3,
+      "prompt": "Which industries matter most? (pick up to 3)",
+      "options": [
+        { "id": "tech", "label": "Technology" },
+        { "id": "finance", "label": "Finance" },
+        { "id": "healthcare", "label": "Healthcare" },
+        { "id": "gov_public", "label": "Government / Public sector" },
+        { "id": "energy", "label": "Energy / Power" },
+        { "id": "consulting", "label": "Consulting / Professional services" },
+        { "id": "consumer", "label": "Consumer / Retail" },
+        { "id": "other", "label": "Other (I'll specify)" }
+      ]
+    },
+    {
+      "id": "seniority_path",
+      "order": 5,
+      "type": "mcq",
+      "single_select": true,
+      "prompt": "Target seniority trajectory",
+      "options": [
+        { "id": "ic", "label": "Individual contributor / deep expert" },
+        { "id": "manager", "label": "People manager" },
+        { "id": "director_plus", "label": "Director and above" },
+        { "id": "founder", "label": "Founder / entrepreneur" },
+        { "id": "advisor", "label": "Board / advisor" }
+      ]
+    },
+    {
+      "id": "outreach_style",
+      "order": 6,
+      "type": "slider",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "labels": {
+        "1": "Warm introductions only",
+        "3": "Balanced",
+        "5": "Include thoughtful cold outreach"
+      },
+      "prompt": "How aggressive should connection and outreach suggestions be?",
+      "default": 3
+    },
+    {
+      "id": "content_cadence",
+      "order": 7,
+      "type": "mcq",
+      "single_select": true,
+      "prompt": "How often will you publish on LinkedIn?",
+      "options": [
+        { "id": "rarely", "label": "Rarely — mostly consume" },
+        { "id": "monthly", "label": "About monthly" },
+        { "id": "biweekly", "label": "Every two weeks" },
+        { "id": "weekly", "label": "Weekly" },
+        { "id": "multi_weekly", "label": "Multiple times per week" }
+      ]
+    }
+  ]
+}
