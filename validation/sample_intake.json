@@ -1,0 +1,14 @@
+{
+  "answers": {
+    "name": "Alex Chen",
+    "current_title": "Senior Product Manager",
+    "skills": ["product management", "strategy", "payments", "SQL", "roadmap"],
+    "primary_goal": "job_search",
+    "time_horizon": 2,
+    "geo_focus": "global_remote",
+    "industry_focus": ["fintech", "tech"],
+    "seniority_path": "director_plus",
+    "outreach_style": 3,
+    "content_cadence": "biweekly"
+  }
+}

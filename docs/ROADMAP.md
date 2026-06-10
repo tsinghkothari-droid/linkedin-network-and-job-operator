@@ -3,18 +3,18 @@
 **Use-case driven plan:** [USE_CASES.md](./USE_CASES.md) · **Personas:** [PERSONAS.md](./PERSONAS.md)  
 **Generic v1 plan:** [GENERIC_SKILL_PLAN.md](./GENERIC_SKILL_PLAN.md)
 
-## Phase G — Generic Public Skill (PLANNED)
+## Phase G — Generic Public Skill (IN PROGRESS)
 
 | ID | Deliverable | Status |
 |----|-------------|--------|
-| G1 | `references/onboarding_playwright.md` + verify script | 🟡 docs done, script pending |
-| G2 | `references/linkedin_data_export_guide.md` + check_export_ready | 🟡 docs done |
-| G3 | Intake ≤7 Q + `intake_to_profile.py` | 🟡 schema + script shipped |
-| G4 | `run_generic_pipeline.py` orchestrator | ⬜ |
-| G5 | `growth_metrics.json` + `action_plan_6mo` generator | 🟡 metrics schema shipped |
-| G6 | `build_intelligence_dashboard.py` fixed layout | ⬜ |
-| G7 | `connection_suggestions.csv` module | ⬜ |
-| G8 | End-to-end generic user test | ⬜ |
+| G1 | `references/onboarding_playwright.md` + verify script | ✅ |
+| G2 | `references/linkedin_data_export_guide.md` + `check_export_ready.py` | ✅ |
+| G3 | Intake ≤7 Q + `intake_to_profile.py` | ✅ |
+| G4 | `run_generic_pipeline.py` orchestrator | ✅ |
+| G5 | `growth_metrics.json` + `action_plan_6mo` generator | ✅ |
+| G6 | `build_intelligence_dashboard.py` fixed layout | ✅ |
+| G7 | `connection_suggestions.csv` module | ✅ |
+| G8 | End-to-end generic user test | 🟡 validation sample passes; real-user doc pending |
 
 ## Phase 0 — Research (DONE)
 
@@ -43,7 +43,7 @@
 - [x] `scripts/business_opportunity.py` — business opp detection
 - [x] `scripts/senior_recommendations.py` — senior people ranking
 - [x] `scripts/content_recommendations.py` — post ideas for network
-- [ ] `scripts/leadership_intel.py` — company leadership lookup (web search integration)
+- [x] `scripts/leadership_intel.py` — company leadership lookup (SearXNG optional via `SEARXNG_URL`)
 - [ ] `data/skills_on_the_rise_2026.json` — macro skill weights
 
 ## Phase 3 — SKILL.md Integration

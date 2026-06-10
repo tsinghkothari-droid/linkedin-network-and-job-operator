@@ -33,6 +33,33 @@ CADENCE_PILLARS = {
     "multi_weekly": ["industry insight", "career lesson", "behind the scenes", "commentary"],
 }
 
+GOAL_BASE_ROLES = {
+    "job_search": ["Product Management", "Strategy", "Operations"],
+    "consulting_bd": ["Consulting", "Business Development", "Advisory"],
+    "thought_leadership": ["Thought Leadership", "Advisory", "Speaking"],
+    "career_pivot": ["Transition Role", "Cross-functional Lead", "Program Management"],
+    "network_expansion": ["Partnerships", "Business Development", "Community"],
+    "fundraising": ["Fundraising", "Investor Relations", "Partnerships"],
+    "hiring": ["Talent Acquisition", "People Operations", "Employer Brand"],
+}
+
+SENIORITY_ROLE_OVERRIDES = {
+    "ic": ["Senior IC", "Staff", "Principal"],
+    "manager": ["Manager", "Senior Manager", "Team Lead"],
+    "director_plus": ["Director", "Senior Director", "VP"],
+    "founder": ["Founder", "Co-founder", "CEO"],
+    "advisor": ["Advisor", "Board Member", "Consultant"],
+}
+
+
+def target_roles_for(goal: str, seniority: str, explicit: list[str] | None) -> list[str]:
+    if explicit:
+        return explicit
+    seniority_roles = SENIORITY_ROLE_OVERRIDES.get(seniority, [])
+    if goal in ("job_search", "career_pivot") and seniority_roles:
+        return seniority_roles
+    return GOAL_BASE_ROLES.get(goal, GOAL_BASE_ROLES["network_expansion"])
+
 
 def main() -> None:
     parser = argparse.ArgumentParser()
@@ -65,14 +92,19 @@ def main() -> None:
 
     goal_key = answers.get("primary_goal", "network_expansion")
     cadence = answers.get("content_cadence", "monthly")
+    seniority_path = answers.get("seniority_path", "manager")
 
     profile = {
         "name": name,
         "mode": "subject",
         "current_title": title,
-        "seniority": SENIORITY_MAP.get(answers.get("seniority_path", "manager"), "Manager"),
+        "seniority": SENIORITY_MAP.get(seniority_path, "Manager"),
         "skills": skills,
-        "target_roles": answers.get("target_roles", ["Strategy", "Consulting", "Leadership"]),
+        "target_roles": target_roles_for(
+            goal_key,
+            seniority_path,
+            answers.get("target_roles"),
+        ),
         "target_industries": industries,
         "preferred_locations": locations,
         "years_experience": answers.get("years_experience", 5),

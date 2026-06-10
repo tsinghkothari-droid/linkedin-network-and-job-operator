@@ -31,13 +31,24 @@ Use exported LinkedIn data, public job pages, and visible browser content only.
 | **A** | Install Playwright + attach **trusted browser** + LinkedIn login | `references/onboarding_playwright.md` |
 | **B** | Guide user to **request & download** LinkedIn data export | `references/linkedin_data_export_guide.md` |
 | **C** | Ask **≤7 intake questions** (MCQ + sliders) **before synthesis** | `references/intake_flow.md`, `templates/intake_questions.json` |
-| **D** | Synthesize: network, jobs, connections, business opps, content, skills | `scripts/run_generic_pipeline.py` (planned) or module scripts |
-| **E** | Deliver **Intelligence Dashboard** + **6-month action plan** | `templates/dashboard_layout.json`, `templates/growth_metrics.json` |
+| **D** | Synthesize: network, jobs, connections, business opps, content, skills | `scripts/run_generic_pipeline.py` |
+| **E** | Deliver **Intelligence Dashboard** + **6-month action plan** | `build_intelligence_dashboard.py`, `generate_action_plan.py` |
 
-After Phase C:
+After Phase C (Phases D–E in one command):
 
 ```bash
-python scripts/intake_to_profile.py --intake linkedin-job-workspace/intake_responses.json --out linkedin-job-workspace/subject_profile.json
+python scripts/run_generic_pipeline.py \
+  --workspace linkedin-job-workspace \
+  --intake linkedin-job-workspace/intake_responses.json \
+  --export path/to/linkedin_export.zip
+```
+
+Optional flags: `--network` (skip export parse), `--skip-live` (no snapshot scoring), `--with-explore` (Windows: run `explore_linkedin.bat` first).
+
+Phase A gate (browser):
+
+```bash
+python scripts/verify_browser_session.py --workspace linkedin-job-workspace
 ```
 
 ## Hard Rules (Non-Negotiable)
@@ -129,11 +140,13 @@ Copy schemas from `templates/`. Never commit workspace files to Git.
 ### One-command intelligence pipeline
 
 ```bash
-python scripts/run_intelligence_pipeline.py \
-  --subject linkedin-job-workspace/subject_profile.json \
-  --network linkedin-job-workspace/network.json \
-  --workspace linkedin-job-workspace
+python scripts/run_generic_pipeline.py \
+  --workspace linkedin-job-workspace \
+  --intake linkedin-job-workspace/intake_responses.json \
+  --export path/to/linkedin_export.zip
 ```
+
+Legacy module-only orchestrator (no intake/dashboard): `scripts/run_intelligence_pipeline.py`
 
 ### Scores, drafts & posts (live session)
 

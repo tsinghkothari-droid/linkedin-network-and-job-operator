@@ -1,6 +1,7 @@
 # LinkedIn private data — never commit
 linkedin-job-workspace/
 validation/output/
+validation/generic_output/
 *.zip
 Connections.csv
 Profile.csv

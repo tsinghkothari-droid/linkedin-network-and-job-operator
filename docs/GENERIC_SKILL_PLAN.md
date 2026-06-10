@@ -1,6 +1,6 @@
 # Generic LinkedIn Intelligence Skill — Product Plan
 
-**Status:** Plan (implementation roadmap)  
+**Status:** Implemented (v1 shipped — validation sample passes)  
 **Repo:** Public GitHub skill — anyone can install and run locally  
 **Principle:** Human-in-the-loop. Agent reads **your** export + **your** trusted browser. You connect, download, approve, and act.
 
@@ -188,7 +188,7 @@ Single orchestrator: `scripts/run_generic_pipeline.py` (new)
 | Content strategy | `content_recommendations.py` | `post_recommendations.md` |
 | Live jobs | `parse_jobs_from_snapshot.py` + scoring | `job_pipeline.csv` |
 | Scores & drafts | `run_scores_drafts_posts.py` | drafts (optional) |
-| Leadership intel | `leadership_intel.py` (planned) | `leadership_map.csv` |
+| Leadership intel | `leadership_intel.py` | `leadership_map.csv` |
 | Exploration | `explore_linkedin.bat` | snapshots |
 
 ### Synthesis outputs (generic person)
@@ -396,12 +396,12 @@ Replace "Phase 0 bootstrap only" with:
 
 ## 15. Next Build Step
 
-**Start G1 + G3 in parallel:**
+**G8 — real-user validation:**
 
-1. Add `templates/intake_questions.json` + `references/intake_flow.md`  
-2. Add `scripts/intake_to_profile.py`  
-3. Rewrite SKILL.md Phase A–C gates  
-4. Stub `build_intelligence_dashboard.py` with scorecard + placeholder sections  
+1. Clone repo → copy `env.example` → attach browser → `explore_linkedin.bat`  
+2. Request LinkedIn export → `run_generic_pipeline.py` with `--export`  
+3. Open `intelligence_dashboard.html` — confirm ≥8 sections + 6-month plan  
+4. Optional: set `SEARXNG_URL` for `leadership_intel.py` enrichment
 
 ---
 
