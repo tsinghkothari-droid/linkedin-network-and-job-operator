@@ -42,7 +42,7 @@
 
 **Trigger phrases:** `find jobs on linkedin`, `job application assistant`, `referral strategy`, `score these roles`
 
-**Workflows:** 2, 4, 3 · **Scripts:** `extract_visible_jobs.py`, `parse_jobs_from_snapshot.py` (planned), `build_dashboard.py`
+**Workflows:** 2, 4, 3 · **Scripts:** `parse_jobs_from_snapshot.py`, `run_scores_drafts_posts.py`, `build_dashboard.py`
 
 **Limits:** No mass apply. No Submit without per-job approval. Stop on CAPTCHA or rate limits.
 
@@ -276,7 +276,8 @@ python scripts\parse_exploration.py
 | Network export parse & index | ✅ Shipped |
 | Skills / sector / business / content / senior intel | ✅ Shipped |
 | Playwright extension attach + exploration | ✅ Shipped |
-| Job pipeline from live snapshots | 🔜 `parse_jobs_from_snapshot.py` |
+| Job pipeline from live snapshots | ✅ `parse_jobs_from_snapshot.py` |
+| Scores + application + post drafts | ✅ `run_scores_drafts_posts.py` |
 | Viewer nurture parser | 🔜 `parse_viewers_from_snapshot.py` |
 | Leadership intel + SearXNG | 🔜 `leadership_intel.py` |
 | Full orchestrator | 🔜 `run_full_pipeline.py` |

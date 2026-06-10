@@ -116,6 +116,16 @@ python scripts/run_intelligence_pipeline.py \
   --workspace linkedin-job-workspace
 ```
 
+### Scores, drafts & posts (live session)
+
+After `explore_linkedin.bat`:
+
+```bash
+python scripts/run_scores_drafts_posts.py --workspace linkedin-job-workspace
+```
+
+Produces: `job_pipeline.csv` (scores), `application_drafts/` (cover letters + referrals), `post_drafts/` (ready-to-review posts), `scores_drafts_posts_report.md`. **You publish and submit.**
+
 ---
 
 ## Workflow Selection

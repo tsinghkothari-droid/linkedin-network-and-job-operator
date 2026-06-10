@@ -47,7 +47,10 @@
 - [x] `scripts/explore_linkedin.bat` — multi-page exploration
 - [x] `scripts/parse_exploration.py` — capability report from snapshots
 - [x] Extension attach flow (`attach_with_token.bat`)
-- [ ] `parse_jobs_from_snapshot.py` — live jobs → `job_pipeline.csv` (Use case: **Job search**)
+- [x] `parse_jobs_from_snapshot.py` — live jobs → `job_pipeline.csv` (Use case: **Job search**)
+- [x] `run_scores_drafts_posts.py` — scores + application drafts + post drafts
+- [x] `pipeline_scoring.py` — shared scoring module
+- [x] `parse_analytics_from_snapshot.py` — creator metrics for post drafts
 - [ ] `parse_viewers_from_snapshot.py` — viewer nurture targets (Use case: **Network growth**)
 - [ ] Company page leadership snapshot parser (Use case: **Business opps**)
 - [ ] Profile comparison from visible browser content

@@ -1,0 +1,34 @@
+{
+  "name": "Tushar Singh Kothari",
+  "mode": "subject",
+  "current_title": "Strategy & Applied AI | Due Diligence | Power Sector & GovTech",
+  "seniority": "Senior",
+  "skills": [
+    "strategy",
+    "applied AI",
+    "due diligence",
+    "power sector",
+    "govtech",
+    "consulting",
+    "business transformation"
+  ],
+  "target_roles": [
+    "Strategy Consultant",
+    "Management Consultant",
+    "AI Strategy",
+    "Due Diligence",
+    "Business Advisor",
+    "Associate Consultant"
+  ],
+  "target_industries": ["govtech", "power", "energy", "consulting", "ai"],
+  "preferred_locations": ["india", "remote"],
+  "years_experience": 10,
+  "visa_needs": "none",
+  "career_goal": "Lead strategy and applied AI work at the intersection of power sector, GovTech, and due diligence in India",
+  "content_pillars": [
+    "Applied AI in due diligence",
+    "GovTech and power sector strategy",
+    "Career growth for strategy professionals in India"
+  ],
+  "operator_note": "Example profile — copy to linkedin-job-workspace/subject_profile.json and edit"
+}

@@ -70,7 +70,10 @@ Copy `.env.example` → `.env` with `PLAYWRIGHT_MCP_EXTENSION_TOKEN` (gitignored
 ```bat
 scripts\explore_linkedin.bat
 python scripts\parse_exploration.py
+python scripts\run_scores_drafts_posts.py --workspace linkedin-job-workspace
 ```
+
+Outputs scored jobs, application drafts, and LinkedIn post drafts (you submit and publish).
 
 ### Export-based intelligence
 
